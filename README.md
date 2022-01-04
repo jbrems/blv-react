@@ -7,3 +7,10 @@ To run this project in development mode use `npm run dev`.
 ## Build project
 
 To build this project run `npm run build`, for production run `npm run build:prod`.
+
+## Deploy project to Google Cloud Run
+
+1. Make sure you are logged in to Google Cloud or login with `gcloud auth login`.
+1. Make sure `blaasveld-net` is the active project with `gcloud config list` or run `gcloud config set project blaasveld-net`.
+1. Run `gcloud builds submit --tag gcr.io/blaasveld-net/blv-react` to upload the container image to Google Cloud.
+1. Start the container with `gcloud run deploy --image gcr.io/blaasveld-net/blv-react`. Choose `y` when asked to allow unauthenticated invocations.
