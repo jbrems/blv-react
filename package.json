@@ -6,7 +6,13 @@
   "scripts": {
     "dev": "webpack serve",
     "build": "webpack",
-    "build:prod": "NODE_ENV=production webpack"
+    "build:prod": "NODE_ENV=production webpack",
+    "docker": "npm run docker:build && npm run docker:run",
+    "docker:build": "docker build . --tag jbrems/blv-react",
+    "docker:run": "docker run -p 3000:3000 jbrems/blv-react",
+    "deploy": "npm run deploy:upload && npm run deploy:run",
+    "deploy:upload": "gcloud builds submit --tag gcr.io/blaasveld-net/blv-react",
+    "deploy:run": "gcloud run deploy --image gcr.io/blaasveld-net/blv-react blv-react --allow-unauthenticated"
   },
   "repository": {
     "type": "git",
